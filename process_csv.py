@@ -105,15 +105,16 @@ def print_sets(name,lst_coding,lst_invoice):
             continue
         print(" Coding:" if item in lst_coding else "Invoice:",item)
 
+def replace_items(df,col_name,d):
+    for k,v in d.items():
+        df[col_name].replace(k,v,inplace=True)
+        
 '''
     ###################
        Handle Parties
     ###################
 '''
-def replace_party(df,col_name,d):
-    for k,v in d.items():
-        df[col_name].replace(k,v,inplace=True)
-d = {
+d_party = {
     'Christian Party "Proclaiming Christ\'s Lordship"': 'Christian Party',
     'Co-operative Party': 'Co-op Party',
     'Conservative and Unionist Party': 'Conservative Party',
@@ -127,13 +128,13 @@ d = {
     'UK Independence Party (UKIP)': 'UKIP',
     'Women\'s Equality Party': 'Womens Equality Party',
 }
-replace_party(df_coding,col_name='Party',d=d)   
+replace_items(df_coding,col_name='Party',d=d_party)   
 coding_parties = sorted(df_coding['Party'].unique())
 
-replace_party(df_invoice,col_name='RegulatedEntityName',d=d)
+replace_items(df_invoice,col_name='RegulatedEntityName',d=d_party)
 invoice_parties = sorted(df_invoice['RegulatedEntityName'].unique())
 
-#print_sets(name='Parties',lst_coding=coding_parties,lst_invoice=invoice_parties)
+print_sets(name='Parties',lst_coding=coding_parties,lst_invoice=invoice_parties)
     
         
 '''
@@ -142,8 +143,21 @@ invoice_parties = sorted(df_invoice['RegulatedEntityName'].unique())
     ###################
 '''
 
+# Remove Whitespaces
+df_coding['Supplier'] = df_coding['Supplier'].str.strip()
+df_invoice['SupplierName'] = df_invoice['SupplierName'].str.strip()
+
+d_supplier = {
+    'Tindle Newspapers Devon Limited': 'Tindle Newspapers',
+    'Tindle Newspapers Limited': 'Tindle Newspapers',
+    'Tindle Newspapers Wales & The Borders Ltd': 'Tindle Newspapers',
+    'Tindle Newspapers West Country Limited': 'Tindle Newspapers',
+}
+
+replace_items(df_coding,col_name='Supplier',d=d_supplier)  
 coding_suppliers = sorted(df_coding['Supplier'].unique())
 
+replace_items(df_invoice,col_name='SupplierName',d=d_supplier) 
 invoice_suppliers = sorted(df_invoice['SupplierName'].unique())
 
 print_sets(name='Supplier',lst_coding=coding_suppliers,lst_invoice=invoice_suppliers)
