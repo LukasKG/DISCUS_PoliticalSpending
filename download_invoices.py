@@ -3,16 +3,16 @@ import os
 import pandas as pd
 import urllib.request
 
-export_path = 'invoices/'
+list_path = 'data/raw/invoice_list.csv'
+export_path = 'data/raw/invoices/'
 
 '''
 Obtain 'invoice_list.csv from
 http://search.electoralcommission.org.uk/Search/Spending?currentPage=1&rows=20&sort=ECRef&order=desc&tab=1&open=filter&et=pp&includeOutsideSection75=true&evt=ukparliament&ev=3696&optCols=ExpenseCategoryName&optCols=AmountInEngland&optCols=AmountInScotland&optCols=AmountInWales&optCols=AmountInNorthernIreland&optCols=DatePaid
 Bottom right of result list - Export Results as csv
 '''
-df = pd.read_csv('invoice_list.csv')
+df = pd.read_csv(list_path)
 
-print(df.columns)
 
 os.makedirs(export_path,exist_ok=True)
 for ID in df['RedactedSupportingInvoiceId']:
