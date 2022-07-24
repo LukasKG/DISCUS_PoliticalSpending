@@ -80,12 +80,28 @@ for col, col_type in zip(df.columns,df.dtypes):
 df_coding = df
 df = None    
 
+
+
+'''
+
+ Invoice list
+
+'''
+
 # Open invoice list
 df_invoice = pd.read_csv(os.path.join(in_path,'invoice_list.csv'))
 
 # Drop entries w/o provided invoices
 df_invoice = df_invoice[df_invoice['RedactedSupportingInvoiceId'].notna()]
 
+# Convert invoice ID to str
+df_invoice['RedactedSupportingInvoiceId'] = df_invoice['RedactedSupportingInvoiceId'].astype(int).astype(str)
+
+# Convert total spend to float
+df_invoice['TotalExpenditure'] = df_invoice['TotalExpenditure'].str.replace('£', '')
+df_invoice['TotalExpenditure'] = df_invoice['TotalExpenditure'].str.replace(',', '')
+df_invoice['TotalExpenditure'] = df_invoice['TotalExpenditure'].astype(float)
+    
 print("\nInvoice column names:")
 for col, col_type in zip(df_invoice.columns,df_invoice.dtypes):
     print("   NaNs" if df_invoice[col].isnull().values.any() else "No NaNs",col_type,col)
@@ -152,6 +168,20 @@ d_supplier = {
     'Tindle Newspapers Limited': 'Tindle Newspapers',
     'Tindle Newspapers Wales & The Borders Ltd': 'Tindle Newspapers',
     'Tindle Newspapers West Country Limited': 'Tindle Newspapers',
+    
+    'Twitter International Company': 'Twitter',
+    'Twitter International Limited': 'Twitter',
+    'Twitter Uk Ltd': 'Twitter',
+
+    
+    'Whistl (Doordrop Media) Ltd' : 'Whistl',
+    'Whistl UK' : 'Whistl',
+    'Whistl UK Limited' : 'Whistl',
+    
+    'YouGov UK': 'YouGov',
+    'YouGov plc': 'YouGov',
+    'YouGovUK': 'YouGov',
+
 }
 
 replace_items(df_coding,col_name='Supplier',d=d_supplier)  
