@@ -92,7 +92,8 @@ df = None
 df_invoice = pd.read_csv(os.path.join(in_path,'invoice_list.csv'))
 
 # Drop entries w/o provided invoices
-df_invoice = df_invoice[df_invoice['RedactedSupportingInvoiceId'].notna()]
+#df_invoice = df_invoice[df_invoice['RedactedSupportingInvoiceId'].notna()]
+df_invoice['RedactedSupportingInvoiceId'] = df_invoice['RedactedSupportingInvoiceId'].fillna(0)
 
 # Convert invoice ID to str
 df_invoice['RedactedSupportingInvoiceId'] = df_invoice['RedactedSupportingInvoiceId'].astype(int).astype(str)
@@ -219,6 +220,8 @@ d_supplier = {
     'Facebook Ireland': 'Facebook',
     'Facebook UK': 'Facebook',
 
+    'Field Media Strategy': 'Field Media',
+    
     'Fullpoint Communications': 'Full Point Communications',
 
     'Getty Images International': 'Getty Images',
@@ -237,6 +240,9 @@ d_supplier = {
     'Hilton Aberdeen TECA': 'Hilton',
     'Hilton Hotels & Resorts': 'Hilton',
     'Hilton Templepatrick': 'Hilton',
+    'Hilton Garden Inn': 'Hilton',
+    'Hilton Hotels': 'Hilton',
+
     
     'HinksBrandwise Digital': 'HinksBrandwise',
     
@@ -265,11 +271,15 @@ d_supplier = {
     
     'M Media Group': 'M Media',
     
+    'MB  Productions': 'MB Productions',
+    
     'MessageSpace': 'Message Space',
     
     'Microsoft Ireland Operations': 'Microsoft',
     
     'Minuteman Press Newport': 'Minuteman Press',
+    
+    'MGI London': 'MGI',
     
     'Neopost UK': 'Neopost', 
     
@@ -292,19 +302,25 @@ d_supplier = {
     'Radisson Blue': 'Radisson Blu',
     'Radisson Blu Hotel Cardiff': 'Radisson Blu',
     
+    'Ratio Digital Marketing': 'Ratio',
+    
     'Royal Mail Group': 'Royal Mail',
 
     'Sainsbury\'s': 'Sainsburys',
     'Sainsbury\'s Supermarkets': 'Sainsburys',
 
-    'Sarsen Press .': 'Sarsen Press',
+    'Sarsen Press.': 'Sarsen Press',
     
     'Snap Group': 'Snapchat',
     'Snap': 'Snapchat',
     
+    'Tangent Marketing Services': 'Tangent',
+    
     'Tesco Stores': 'Tesco',
     'Tesco PLC': 'Tesco',
-    
+    'Tesco Express': 'Tesco',
+    'Tesco Neath Abbey': 'Tesco',
+
     'Tindle Newspapers Devon': 'Tindle Newspapers',
     'Tindle Newspapers Wales & Borders': 'Tindle Newspapers',
     'Tindle Newspapers West Country': 'Tindle Newspapers',
@@ -325,6 +341,11 @@ d_supplier = {
     
     'Uber Eats': 'Uber',
     'Uber London': 'Uber',
+    'UBER': 'Uber',
+    'Uber1': 'Uber',
+    
+    
+    'Wirral Allaince Print Services': 'Wirral Alliance Print Services',
     
     'Whistl (Doordrop Media) Ltd' : 'Whistl',
     'Whistl UK' : 'Whistl',
@@ -332,6 +353,9 @@ d_supplier = {
     'YouGov UK': 'YouGov',
     'YouGov plc': 'YouGov',
     'YouGovUK': 'YouGov',
+
+    'Zoom Display': 'Zoom',
+    'Zoom Video Communications': 'Zoom',
 
 }
 
