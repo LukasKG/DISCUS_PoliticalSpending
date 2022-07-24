@@ -159,24 +159,175 @@ print_sets(name='Parties',lst_coding=coding_parties,lst_invoice=invoice_parties)
     ###################
 '''
 
+# Remove "Limited" and "The "
+for word in ['The ',' Limited',' limited',' Limitd',' LIMITED',' ltd',' ltD',' lTd',' lTD',' Ltd',' LTD',' LTd',' LtD',' Inc']:
+    df_coding['Supplier'] = df_coding['Supplier'].str.replace(word,'')
+    df_invoice['SupplierName'] = df_invoice['SupplierName'].str.replace(word,'')
+
 # Remove Whitespaces
 df_coding['Supplier'] = df_coding['Supplier'].str.strip()
 df_invoice['SupplierName'] = df_invoice['SupplierName'].str.strip()
 
+
+
 d_supplier = {
-    'Tindle Newspapers Devon Limited': 'Tindle Newspapers',
-    'Tindle Newspapers Limited': 'Tindle Newspapers',
-    'Tindle Newspapers Wales & The Borders Ltd': 'Tindle Newspapers',
-    'Tindle Newspapers West Country Limited': 'Tindle Newspapers',
+    'A.G.A Print t/a Solopress': 'AGA Print',
+    'AGA Print t/a Solopress': 'AGA Print',
+
+    'Airbnb Inc': 'Airbnb',
+    'Airbnb Ireland UC': 'Airbnb',
+    'Airbnb Payments UK': 'Airbnb',
+    
+    'Amazon UK': 'Amazon',
+    'Amazon Services Europe 38 Avenue John F. Kennedy, L-1855, Luxemb': 'Amazon',
+    
+    'Bluetree Design & Print': 'Bluetree',
+    'Bluetree Design & Print t/a Instantprint': 'Bluetree',
+    'Bluetree Website Services': 'Bluetree',
+    
+    'Blueway Creative Media': 'Blueway',
+    
+    'British Airways plc': 'British Airways',
+    'British Airways?Plc': 'British Airways',
+    
+    'Burgoynes (Lyonshall)': 'Burgoynes',
+    
+    'Cardiff Bay Print': 'Cardiff Bay Printing',
+
+    'Cameraworks': 'Camera Works',
+    
+    'cheapest print online': 'Cheapestprintonline',
+    
+    'Co-Operative Group': 'Co-op',
+    'Co-operative Business Consultants': 'Co-op',
+    
+    'DC Thomsom & Co': 'DC Thomson & Co',
+    
+    'deliveroo': 'Deliveroo',
+    
+    'D X G Media': 'DXG Media',
+    'DGX Media': 'DXG Media',
+
+    'easyjet': 'Easyjet',
+    'easyJet Airline Company': 'Easyjet',
+    
+    'Enterprise Rent-A-Car UK': 'Enterprise',
+    
+    'Eurocar': 'Europcar',
+    'Europ Car': 'Europcar',
+    
+    'Facebook Ireland': 'Facebook',
+    'Facebook UK': 'Facebook',
+
+    'Fullpoint Communications': 'Full Point Communications',
+
+    'Getty Images International': 'Getty Images',
+    'Getty Images-': 'Getty Images',
+    
+    'GOOGLE UK': 'Google',
+    'Google Ireland': 'Google',
+
+    'Hamilton Hotel': 'Hamilton',
+    'Hamilton Rentals': 'Hamilton',
+    
+    'Helloprint': 'HelloPrint',
+    
+    'Hertz UK': 'Hertz',
+
+    'Hilton Aberdeen TECA': 'Hilton',
+    'Hilton Hotels & Resorts': 'Hilton',
+    'Hilton Templepatrick': 'Hilton',
+    
+    'HinksBrandwise Digital': 'HinksBrandwise',
+    
+    'Humphreys signs': 'Humphreys Signs',
+    
+    'International Centre Telford': 'International Centre',
+    
+    'Intercontinental Hotels Group': 'InterContinental Hotels Group',
+    'InterContinental Hotels Group PLC': 'InterContinental Hotels Group',
+    
+    'JPI MEDIA': 'JPI Media',
+    'JPI Media Publishing': 'JPI Media',
+    'JPIMedia Publishing': 'JPI Media',
+    
+    'JEWISH CHRONICLE NEWSPAPER': 'Jewish Chronicle',
+    
+    'LDM (UK)': 'LDM',
+    'LDM UK': 'LDM',
+    
+    'Lazar Print': 'Lazer Print',
+    
+    'Leafletfrog': 'Leaflet Frog',
+    
+    'Little\'s': 'Littles',
+    'Little?s Chauffeur Drive': 'Littles',
+    
+    'M Media Group': 'M Media',
+    
+    'MessageSpace': 'Message Space',
+    
+    'Microsoft Ireland Operations': 'Microsoft',
+    
+    'Minuteman Press Newport': 'Minuteman Press',
+    
+    'Neopost UK': 'Neopost', 
+    
+    'Newsquest (London)': 'Newsquest',
+    'Newsquest Media Group': 'Newsquest',
+
+    'O\'Donnell': 'O Donnell',
+    'O\'Donnell and Associates': 'O Donnell',
+    
+    'Paragon CC': 'Paragon Customer Communications',
+    'Paragon Customer Communications London': 'Paragon Customer Communications',
+    
+    'Postal Choices t/a Onepost': 'Postal Choices',
+    
+    'Potts Print UK': 'Potts Print',
+    
+    'Printech (Europe)': 'Printech',
+    'Printech Express': 'Printech',
+    
+    'Radisson Blue': 'Radisson Blu',
+    'Radisson Blu Hotel Cardiff': 'Radisson Blu',
+    
+    'Royal Mail Group': 'Royal Mail',
+
+    'Sainsbury\'s': 'Sainsburys',
+    'Sainsbury\'s Supermarkets': 'Sainsburys',
+
+    'Sarsen Press .': 'Sarsen Press',
+    
+    'Snap Group': 'Snapchat',
+    'Snap': 'Snapchat',
+    
+    'Tesco Stores': 'Tesco',
+    'Tesco PLC': 'Tesco',
+    
+    'Tindle Newspapers Devon': 'Tindle Newspapers',
+    'Tindle Newspapers Wales & Borders': 'Tindle Newspapers',
+    'Tindle Newspapers West Country': 'Tindle Newspapers',
+    
+    'TradePrint Distribuiton': 'Tradeprint',
+    
+    'International Centre Telford': 'International Centre',
+    
+    'Train Line': 'Trainline',
+    'thetrainline.com': 'Trainline',
+    'Trainline.com': 'Trainline',
+    
+    'Trosol Cyf': 'Trosol',
     
     'Twitter International Company': 'Twitter',
-    'Twitter International Limited': 'Twitter',
-    'Twitter Uk Ltd': 'Twitter',
-
+    'Twitter International': 'Twitter',
+    'Twitter Uk': 'Twitter',
+    
+    'Uber Eats': 'Uber',
+    'Uber London': 'Uber',
     
     'Whistl (Doordrop Media) Ltd' : 'Whistl',
     'Whistl UK' : 'Whistl',
-    'Whistl UK Limited' : 'Whistl',
     
     'YouGov UK': 'YouGov',
     'YouGov plc': 'YouGov',
