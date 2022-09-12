@@ -93,10 +93,9 @@ df_invoice = pd.read_csv(os.path.join(in_path,'invoice_list.csv'))
 
 # Drop entries w/o provided invoices
 #df_invoice = df_invoice[df_invoice['RedactedSupportingInvoiceId'].notna()]
-df_invoice['RedactedSupportingInvoiceId'] = df_invoice['RedactedSupportingInvoiceId'].fillna(0)
 
 # Convert invoice ID to str
-df_invoice['RedactedSupportingInvoiceId'] = df_invoice['RedactedSupportingInvoiceId'].astype(int).astype(str)
+df_invoice['RedactedSupportingInvoiceId'] = df_invoice['RedactedSupportingInvoiceId'].fillna(0).astype(int).astype(str)
 
 # Convert total spend to float
 df_invoice['TotalExpenditure'] = df_invoice['TotalExpenditure'].str.replace('£', '')
@@ -144,6 +143,7 @@ d_party = {
     'The Women\'sEquality Party': 'Womens Equality Party',
     'UK Independence Party (UKIP)': 'UKIP',
     'Women\'s Equality Party': 'Womens Equality Party',
+    'The Independent Group for Change [De-registered 23/07/20]': 'The Independent Group for Change',
 }
 replace_items(df_coding,col_name='Party',d=d_party)   
 coding_parties = sorted(df_coding['Party'].unique())
