@@ -16,6 +16,10 @@ Before solving the task of matching individual invoice positions, we first aimed
 
 After all adjustments, £49,540,640.20 (98.9%) could be matched, whereas £20,115.23 (0.0%) of the amounts listed in the coding list could not be linked to the invoices and £516,562.91 (1.0%) of the amounts in the invoices could not be linked to the coding list.
 
+### Match the invoices
+
+The goal now is to match the coded categorisations to the individual invoices. Since there can be multiple different categories in a coding of many invoices, bruteforcing a solution might become computationally unfeasable. Therefore heuristics such as greedy or genetic algorithms for this variation of the Knapsack problem should be considered.
+
 ## Download invoices
 
 The script to [download the invoice files](download_invoices.py) takes the [invoice list](/data/raw/invoice_list.csv) obtained from the electoral college, identifies every entry with a provided supporting invoice, and uses these IDs to download the provided files. In total, 22,720 positions are listed by the electoral college, out of which 6,396 have an invoice attached.
