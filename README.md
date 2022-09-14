@@ -8,7 +8,7 @@ The initial challenge arrises from the fact that there's no direct link between 
 
 ### Match the amounts
 
-Before solving the task of matching individual invoice positions, we first aimed to match the total amounts. By summing up all expenses between each unique party - supplier combination in both the invoice and the coding list, only 50% of the amounts could be matched. Misspellings, white spaces, and different spellings of both, parties and suppliers, were identified as issue (e.g. GOOGLE UK and Google). This problem is tackled in [connect_csv](connect_csv.py) by removing whitespaces and keywords like "Ltd" from names. There is also a long list of converting names to unifying pendants which was developed during multiple iterations of identifying similar names or similar unlinked amounts as identified in the snippet below.
+Before solving the task of matching individual invoice positions, we first aimed to match the total amounts. By summing up all expenses between each unique party - supplier combination in both the invoice and the coding list, only 50% of the amounts could be matched. Misspellings, white spaces, and different spellings of both, parties and suppliers, were identified as issue (e.g. GOOGLE UK and Google). This problem is tackled in [connect_csv](connect_csv.py) by removing whitespaces and keywords like "Ltd" from names. There is also a long list of converting names to unifying pendants which was developed during multiple iterations of identifying similar names or similar unlinked amounts ([connect_amounts.ipynb](connect_amounts.ipynb)) as identified in the snippet below.
 
 <p align="center">
   <img src="https://github.com/LukasKG/DISCUS_PoliticalSpending/blob/main/img/last_matching.png" />
