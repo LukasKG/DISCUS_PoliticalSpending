@@ -165,6 +165,11 @@ for word in ['The ',' Limited',' limited',' Limitd',' LIMITED',' ltd',' ltD',' l
     df_coding['Supplier'] = df_coding['Supplier'].str.replace(word,'')
     df_invoice['SupplierName'] = df_invoice['SupplierName'].str.replace(word,'')
 
+# Unify Conservative naming
+for word in ['Conservative Association', 'Conservatives']:
+    df_coding['Supplier'] = df_coding['Supplier'].str.replace(word,'CA')
+    df_invoice['SupplierName'] = df_invoice['SupplierName'].str.replace(word,'CA')
+    
 # Remove Whitespaces
 df_coding['Supplier'] = df_coding['Supplier'].str.strip()
 df_invoice['SupplierName'] = df_invoice['SupplierName'].str.strip()
@@ -180,7 +185,9 @@ d_supplier = {
     'Airbnb Payments UK': 'Airbnb',
     
     'Amazon UK': 'Amazon',
+    'Amazon UK Services': 'Amazon',
     'Amazon Services Europe 38 Avenue John F. Kennedy, L-1855, Luxemb': 'Amazon',
+    'Amazon EU S.?? r.l (UK Branch)': 'Amazon',
     
     'Bluetree Design & Print': 'Bluetree',
     'Bluetree Design & Print t/a Instantprint': 'Bluetree',
@@ -199,12 +206,17 @@ d_supplier = {
     
     'cheapest print online': 'Cheapestprintonline',
     
+    'CHF Docmail': 'CFH Docmail',
+    'C F H Docmail': 'CFH Docmail',
+    
     'Co-Operative Group': 'Co-op',
     'Co-operative Business Consultants': 'Co-op',
     
     'DC Thomsom & Co': 'DC Thomson & Co',
     
     'deliveroo': 'Deliveroo',
+    
+    'D L M Distribution': 'DLM Distribution',
     
     'D X G Media': 'DXG Media',
     'DGX Media': 'DXG Media',
@@ -226,12 +238,18 @@ d_supplier = {
 
     'Getty Images International': 'Getty Images',
     'Getty Images-': 'Getty Images',
+    'Getty Images Uk (iStock)': 'Getty Images',
     
+    'GNC Print': 'GNC Printers',
+    
+    'Google UK': 'Google',
     'GOOGLE UK': 'Google',
     'Google Ireland': 'Google',
 
     'Hamilton Hotel': 'Hamilton',
     'Hamilton Rentals': 'Hamilton',
+    
+    'Harcourt Litho': 'Harcourt Colour Print',
     
     'Helloprint': 'HelloPrint',
     
@@ -243,6 +261,8 @@ d_supplier = {
     'Hilton Garden Inn': 'Hilton',
     'Hilton Hotels': 'Hilton',
 
+    'Hill': 'Hill and Hay',
+    'Hill And Hay': 'Hill and Hay',
     
     'HinksBrandwise Digital': 'HinksBrandwise',
     
@@ -269,6 +289,8 @@ d_supplier = {
     'Little\'s': 'Littles',
     'Little?s Chauffeur Drive': 'Littles',
     
+    'Lner': 'LNER',
+    
     'M Media Group': 'M Media',
     
     'MB  Productions': 'MB Productions',
@@ -280,6 +302,8 @@ d_supplier = {
     'Minuteman Press Newport': 'Minuteman Press',
     
     'MGI London': 'MGI',
+    
+    'Morton Media Group': 'Mortons Media Group',
     
     'Neopost UK': 'Neopost', 
     
@@ -299,6 +323,8 @@ d_supplier = {
     'Printech (Europe)': 'Printech',
     'Printech Express': 'Printech',
     
+    'Print Carrier.com': 'PrintCarrier.com GmbH',
+    
     'Radisson Blue': 'Radisson Blu',
     'Radisson Blu Hotel Cardiff': 'Radisson Blu',
     
@@ -307,9 +333,12 @@ d_supplier = {
     'Royal Mail Group': 'Royal Mail',
 
     'Sainsbury\'s': 'Sainsburys',
+    'Sainsburys Supermarkets': 'Sainsburys',
     'Sainsbury\'s Supermarkets': 'Sainsburys',
 
     'Sarsen Press.': 'Sarsen Press',
+    
+    'Sign Solutions': 'Sign Design',
     
     'Snap Group': 'Snapchat',
     'Snap': 'Snapchat',
@@ -325,7 +354,12 @@ d_supplier = {
     'Tindle Newspapers Wales & Borders': 'Tindle Newspapers',
     'Tindle Newspapers West Country': 'Tindle Newspapers',
     
+    'tmwi': 'TMWI',
+    
     'TradePrint Distribuiton': 'Tradeprint',
+    
+    'Travelodge Cardiff': 'Travelodge',
+    'Travel Lodge': 'Travelodge',
     
     'International Centre Telford': 'International Centre',
     
@@ -344,10 +378,11 @@ d_supplier = {
     'UBER': 'Uber',
     'Uber1': 'Uber',
     
+    'Washington Central': 'Washington Central Hotel & Sleepwell Inn',
     
     'Wirral Allaince Print Services': 'Wirral Alliance Print Services',
     
-    'Whistl (Doordrop Media) Ltd' : 'Whistl',
+    'Whistl (Doordrop Media)' : 'Whistl',
     'Whistl UK' : 'Whistl',
     
     'YouGov UK': 'YouGov',
