@@ -4,7 +4,7 @@
 
 ### Challenge
 
-The initial challenge arrises from the fact that there's no direct link between the invoices provided by the electoral college and the categories assigned to the expenses by Dr. Power and his team. The **invoice list** obtained from the electoral college, lists every invoice with an unique ID, the party, the supplier, a rough estimation of the expense category, the expense, and an ID if there is an attachement provided (e.g. scan of the physical invoice). The **coding list** provided by Dr. Power lists for every existing combination of party and suppliers a detailed breakdown which amounts were spent on each of the xx listed categories. However, this can be an accumulation of multiple invoices between the party and a particular supplier and hence, this bridge must be gaped in order to obtain a supervised training set, where each invoice can be linked to one or multiple spending categories.
+The initial challenge arrises from the fact that there's no direct link between the invoices provided by the electoral college and the categories assigned to the expenses by Dr. Power and his team. The **invoice list** obtained from the electoral college, lists every invoice with an unique ID, the party, the supplier, a rough estimation of the expense category, the expense, and an ID if there is an attachement provided (e.g. scan of the physical invoice). The **coding list** provided by Dr. Power lists for every existing combination of party and suppliers a detailed breakdown which amounts were spent on each of the 58 listed categories. However, this can be an accumulation of multiple invoices between the party and a particular supplier and hence, this bridge must be gaped in order to obtain a supervised training set, where each invoice can be linked to one or multiple spending categories.
 
 ### Match the amounts
 
@@ -13,6 +13,8 @@ Before solving the task of matching individual invoice positions, we first aimed
 <p align="center">
   <img src="https://github.com/LukasKG/DISCUS_PoliticalSpending/blob/main/img/last_matching.png" />
 </p>
+
+After all adjustments, £49,540,640.20 (98.9%) could be matched, whereas £20,115.23 (0.0%) of the amounts listed in the coding list could not be linked to the invoices and £516,562.91 (1.0%) of the amounts in the invoices could not be linked to the coding list.
 
 ## Download invoices
 
