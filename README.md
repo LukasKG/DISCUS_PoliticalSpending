@@ -1,5 +1,7 @@
 # Breakdown of campaign spendings during the general election 2019
 
+The goal of this project is to develop a machine learning pipeline which is able to extract relevant information from provided invoice scans and predict a spending category for the expenses. A dataset of invoices is provided by the electoral college and the target categories are suggested by Dr. Power and his team. Unfortunately, the target categories are only available for the accumulated expenses between a party and a supplier, therefore, the amounts for the individual invoices have to be determined before the classification of invoices can be trained/evaluated.
+
 ## Match Suppliers
 
 ### Challenge
@@ -18,11 +20,15 @@ After all adjustments, £49,540,640.20 (98.9%) could be matched, whereas £20,11
 
 ### Match the invoices
 
-The goal now is to match the coded categorisations to the individual invoices. Since there can be multiple different categories in a coding of many invoices, bruteforcing a solution might become computationally unfeasable. Therefore heuristics such as greedy or genetic algorithms for this variation of the Knapsack problem should be considered.
+The goal now is to match the coded categorisations to the individual invoices. Since there can be multiple different categories in a coding of many invoices, bruteforcing a solution might become computationally unfeasable. Therefore heuristics such as greedy or genetic algorithms for this variation of the Multiple Knapsack problem should be considered.
 
 ## Download invoices
 
 The script to [download the invoice files](download_invoices.py) takes the [invoice list](/data/raw/invoice_list.csv) obtained from the electoral college, identifies every entry with a provided supporting invoice, and uses these IDs to download the provided files. In total, 22,720 positions are listed by the electoral college, out of which 6,396 have an invoice attached.
+ 
+## Invoice classification
+
+To be continued.
  
 # Original Brief for DISCUS Hackathon:
 
