@@ -30,6 +30,8 @@ Current [implementations](match_invoices.py) include:
 
 Note that amounts matched does not equal amounts correctly matched as misassignments in one invoice can be belanced by misassignments in another invoice between the same supplier - party. Currently, the solvers can only assign one type of expense to each invoice although invoices can contain expenses from multiple categories. The next step would be identifying the matches with the biggest errors (and provided invoice copies) and manually reading them. The results should be entered in 'data/input/invoices_manual.csv' and the [invoice matching](match_invoices.py) updated accordingly.
 
+The matched invoices can be found in [invoices_matched.csv](data/processed/invoices_matched.csv)
+
 ## Download invoices
 
 The script to [download the invoice files](download_invoices.py) takes the [invoice list](/data/raw/invoice_list.csv) obtained from the electoral college, identifies every entry with a provided supporting invoice, and uses these IDs to download the provided files. In total, 22,720 positions are listed by the electoral college, out of which 6,396 have an invoice attached.
