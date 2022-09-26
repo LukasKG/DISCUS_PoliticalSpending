@@ -22,6 +22,14 @@ After all adjustments, £49,540,640.20 (98.9%) could be matched, whereas £20,11
 
 The goal now is to match the coded categorisations to the individual invoices. Since there can be multiple different categories in a coding of many invoices, bruteforcing a solution might become computationally unfeasable. Therefore heuristics such as greedy or genetic algorithms for this variation of the Multiple Knapsack problem should be considered.
 
+Current [implementations](match_invoices.py) include:
+- Random solver
+    - amounts matched: ~£44,000,000 (~88%)
+- Genetic algorithm
+    - amounts matched: / (/%)
+
+Note that amounts matched does not equal amounts correctly matched as misassignments in one invoice can be belanced by misassignments in another invoice between the same supplier - party. Currently, the solvers can only assign one type of expense to each invoice although invoices can contain expenses from multiple categories. The next step would be identifying the matches with the biggest errors (and provided invoice copies) and manually reading them. The results should be entered in 'data/input/invoices_manual.csv' and the [invoice matching](match_invoices.py) updated accordingly.
+
 ## Download invoices
 
 The script to [download the invoice files](download_invoices.py) takes the [invoice list](/data/raw/invoice_list.csv) obtained from the electoral college, identifies every entry with a provided supporting invoice, and uses these IDs to download the provided files. In total, 22,720 positions are listed by the electoral college, out of which 6,396 have an invoice attached.
