@@ -69,8 +69,8 @@ def genetic_algorithm(invoice_amounts,total_values,loss='MSE',N=100,max_iter=50,
     No_Gen = invoice_amounts.shape[0]
     No_Typ = len(total_values)
     
-    factor = No_Gen ** (No_Typ-1)
-    max_iter = int(max_iter * factor)
+    #factor = No_Gen ** (No_Typ-1)
+    #total_iter = int(max_iter * factor)
     
     indeces = np.array(range(N))
     pop = np.random.randint(low=0, high=No_Typ, size=(N,No_Gen), dtype=int)
@@ -108,6 +108,10 @@ def genetic_algorithm(invoice_amounts,total_values,loss='MSE',N=100,max_iter=50,
           
                 if minFit < min_error:
                     break
+                    
+            # Print every N iterations
+            if (it+1)%N == 0:
+                print(f"{it+1}/{max_iter}: Fitness: {minFit:.2f} Solution: {pop[minFit_idx]}")
     return pop[minFit_idx]
 
 def run(solver='GA',N=100,verbose=False):
