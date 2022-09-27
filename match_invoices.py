@@ -62,15 +62,19 @@ def random_solver(invoice_amounts,total_values,loss='MSE',max_iter=5,max_waiting
             
     return pred
 
-def genetic_algorithm(invoice_amounts,total_values,loss='MSE',N=100,max_iter=50,mutationRate=0.02,min_error=0.01):
+def genetic_algorithm(invoice_amounts,total_values,loss='MSE',N=100,max_iter=50,mutationRate=None,min_error=0.01):
     def calcFit(prediction):
         return get_error(invoice_amounts,total_values,prediction,loss=loss)[0]
     
     No_Gen = invoice_amounts.shape[0]
     No_Typ = len(total_values)
     
+    if mutationRate is None:
+        mutationRate = 1/No_Gen
+    
     #factor = No_Gen ** (No_Typ-1)
-    #total_iter = int(max_iter * factor)
+    factor = 1
+    total_iter = int(max_iter * factor * N)
     
     indeces = np.array(range(N))
     pop = np.random.randint(low=0, high=No_Typ, size=(N,No_Gen), dtype=int)
@@ -81,7 +85,7 @@ def genetic_algorithm(invoice_amounts,total_values,loss='MSE',N=100,max_iter=50,
     #print(f"Minimum: {minFit:.2f} (Idx = {minFit_idx}); solution: {pop[minFit_idx]}")
     
     if minFit > min_error:
-        for it in range(max_iter*N):
+        for it in range(total_iter*N):
             champs = np.random.choice(indeces, size=2, replace=False)
 
             # determine winner
@@ -111,7 +115,7 @@ def genetic_algorithm(invoice_amounts,total_values,loss='MSE',N=100,max_iter=50,
                     
             # Print every N iterations
             if (it+1)%N == 0:
-                print(f"{it+1}/{max_iter}: Fitness: {minFit:.2f} Solution: {pop[minFit_idx]}")
+                print(f"{it+1}/{total_iter}: Fitness: {minFit:.2f} Solution: {pop[minFit_idx]}")
     return pop[minFit_idx]
 
 def run(solver='GA',N=100,verbose=False):
