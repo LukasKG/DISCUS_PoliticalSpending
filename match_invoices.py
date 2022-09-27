@@ -115,7 +115,7 @@ def genetic_algorithm(invoice_amounts,total_values,loss='MSE',N=100,max_iter=50,
                     
             # Print every N iterations
             if (it+1)%N == 0:
-                print(f"{it+1}/{total_iter}: Fitness: {minFit:.2f} Solution: {pop[minFit_idx]}")
+                print(f"{(it+1)//N}/{total_iter}: Fitness: {minFit:.2f} Solution: {pop[minFit_idx]}")
     return pop[minFit_idx]
 
 def run(solver='GA',N=100,verbose=False):
@@ -169,7 +169,7 @@ def run(solver='GA',N=100,verbose=False):
                     prediction = np.zeros(invoices.shape[0],dtype=int)
                 else:
                     if solver == 'GA':
-                        prediction = genetic_algorithm(invoices,values,loss='MSE',N=N,max_iter=sup_invoice.shape[0]*len(values),mutationRate=0.02)
+                        prediction = genetic_algorithm(invoices,values,loss='MSE',N=N,max_iter=len(values)**3,mutationRate=0.02)
                     else:
                         # Absolute error is fine for random solver as only one position is changed at the time
                         prediction = random_solver(invoices,values,loss='MAE')
