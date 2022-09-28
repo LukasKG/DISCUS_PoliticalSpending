@@ -26,7 +26,7 @@ Current [implementations](match_invoices.py) include:
 - Random solver
     - amounts matched: ~£44,000,000 (~88%)
 - Genetic algorithm
-    - amounts matched: / (/%)
+    - amounts matched: ~£49,500,000 (~99%)
 
 Note that amounts matched does not equal amounts correctly matched as misassignments in one invoice can be belanced by misassignments in another invoice between the same supplier - party. Currently, the solvers can only assign one type of expense to each invoice although invoices can contain expenses from multiple categories. The next step would be identifying the matches with the biggest errors (and provided invoice copies) and manually reading them. The results should be entered in 'data/input/invoices_manual.csv' and the [invoice matching](match_invoices.py) updated accordingly.
 
